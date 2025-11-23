@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Khairat — Data & Growth Analyst Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN (for quick prototyping) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Urbanist', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  
+  <style>
+    /* small visual tweaks */
+    :root{
+      --accent-yellow: #FFF44F;
+      --muted: #9b9b9b;
+    }
+    /* Decorative tilted cards */
+    .tilt {
+      transform: rotate(-12deg);
+    }
+    .tilt-2 {
+      transform: rotate(6deg);
+    }
+    .tilt-3 {
+      transform: rotate(-2deg);
+    }
+
+    /* subtle card shadow */
+    .card-shadow {
+      box-shadow: 0 8px 18px rgba(11,11,11,0.12);
+    }
+
+    .hamburger{
+      cursor: pointer;
+      width: 24px;
+      height: 24px;
+      transition: all 0.25s;
+      position: relative;
+    }
+
+    .hamburger-top,
+    .hamburger-middle,
+    .hamburger-bottom {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 24px;
+      height: 2px;
+      transform: rotate(0);
+      transition: all 0.5s;
+      background: black;
+    }
+    .hamburger-middle{
+      transform: translateY(7px);
+    }
+
+    .hamburger-bottom{
+      transform: translateY(14px);
+    }
+    .open {
+      transform: rotate(90deg);
+      transform: translateY(0px);
+    }
+
+    .open .hamburger-top{
+      transform: rotate(45deg) translateY(6px) translate(6px);
+    }
+
+    .open .hamburger-middle{
+      display: none;
+    }
+
+     .open .hamburger-bottom{
+      transform: rotate(-45deg) translateY(6px) translate(-6px);
+    }
+    body{
+      overflow-x: hidden;
+    }
+  </style>
+</head>
+<body class="antialiased text-gray-900 bg-white">
+
+  <!-- Page container -->
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
+
+    <!-- Top bar (desktop) -->
+      <nav class="md:block relative mx-auto container pt-6 pb-4 md:flex md:justify-center md:mt-10 md:items-center">
+        <!-- middle: icon row (desktop) -->
+        <div class="hidden md:flex md:gap-12 bg-white fixed backdrop-blur-lg z-50 border border-gray-100 card-shadow md:px-6 items-center justify-between py-3 rounded">
+          <!-- simple icons as inline svgs -->
+          <a class="text-gray-600 hover:text-black" href="main.html" aria-label="Home">
+           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house-icon lucide-house"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          </a>
+          <a class="text-gray-600 hover:text-black" href="https://www.instagram.com/khayrah_khayr/" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram-icon lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+          </a>
+          <a class="text-gray-600 hover:text-black" href="https://www.linkedIn.com/in/khairat-jimoh" aria-label="LinkedIn">
+           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin-icon lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a class="text-gray-600 hover:text-black" href="#" aria-label="Dashboards">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard-icon lucide-layout-dashboard"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+          </a>
+           <a class="text-gray-600 hover:text-black" href="https://www.github.com/KhayrJ6" aria-label="Github">
+           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github-icon lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+          </a> <a class="text-gray-600 hover:text-black" href="#" aria-label="Dashboards">
+           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark-icon lucide-bookmark"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+          </a>
+          <a href="https://calendly.com/khairahjimoh/new-meeting">
+            <button class="bg-black py-3 px-8 text-white rounded-lg">Book a call</button>
+          </a>
+      <!-- mobile-menu  -->
+        </div>
+        <div class="bg-white">
+         <div class="bg-white md:hidden rounded-lg fixed py-4 mt-0 px-4 mx-auto backdrop-blur-lg z-50 border border-gray-100 card-shadow flex flex-row justify-between gap-44">
+            <a class="text-gray-600 hover:text-black" href="main.html" aria-label="Home">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house-icon lucide-house"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            </a>
+            <button id="menu-btn" class="block hamburger md:hidden focus:outline-none">
+              <span class="hamburger-top"></span>
+              <span class="hamburger-middle"></span>
+              <span class="hamburger-bottom"></span>
+            </button>
+          
+          </div>
+        <div class="md:hidden sm:block absolute">
+          <div id="menu" class="fixed z-50 flex-col items-start hidden  self-end py-8 top-20 space-y-6    font-bold bg-white sm:w-auto sm:self-center left-5 px-12 right-2 drop-shadow-md">
+              <div class="flex flex-row justify-between gap-6">
+                  <a class="text-gray-600 hover:text-black" href="https://www.linkedin.com/in/khairat-jimoh" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin-icon lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
+              <p>LinkedIn</p>
+              </div>
+          
+              <div class="flex flex-row justify-between gap-6">
+                <a class="text-gray-600 hover:text-black" href="https://www.github.com/KhayrJ6" aria-label="Github">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github-icon lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg></a>
+              <p>GitHub</p>
+              </div>
+              
+              <div class="flex flex-row justify-between gap-6">
+                <a class="text-gray-600 hover:text-black" href="#" aria-label="Dashboards">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard-icon lucide-layout-dashboard"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+              </a>
+              <p>Dashboards</p>
+              </div>
+              
+              <div class="flex flex-row justify-between gap-6">
+                  <a class="text-gray-600 hover:text-black" href="https://www.instagram.com/khayrah_khayr/" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram-icon lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+              </a> 
+              <p>Instagram</p>
+              </div>
+
+              <div class="flex flex-row justify-between gap-6">
+                <a class="text-gray-600 hover:text-black" href="#" aria-label="Resources">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark-icon lucide-bookmark"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+                  </a>
+                  <p>Resources</p>
+              </div>
+              <a href="https://calendly.com/khairahjimoh/new-meeting">
+                <button class="bg-black py-1 -mx-5 text-white rounded-lg w-60">Book a call</button>
+              </a>
+          </div>   
+        </div>
+         </div>
+
+      </nav>
+ 
+    
+    <!-- Hero -->
+    <section class="md:justify-center gap-8 md:items-center py-6 md:px-52">
+      <!-- main hero content -->
+      <div class="md:justify-center md:mt-20 mt-10">
+        <h1 class="md:text-5xl text-3xl font-extrabold">Hey, I'm Khairat</h1>
+        <h1 class="block md:text-5xl text-3xl mt-1 font-extrabold">Data & Growth Analyst.</h1>
+        
+           <p class="mt-4 mb-2 md:text-2xl text-sm sm:text-sm font-semibold text-gray-700 max-w-2xl">
+          What you expect from a data analyst. And what you don't. <br>  3 years turning insights into profitable actions.
+          </p>
+  
+        <div class="mt-6 flex flex-wrap gap-4">
+          <a class="inline-flex items-center justify-center px-5 py-4 rounded-lg bg-black text-white text-sm font-medium card-shadow" href="#">Hire me</a>
+          <a class="inline-flex hidden md:block items-center justify-center px-5 py-4 rounded-lg border-0 text-sm font-medium" style="background:var(--accent-yellow); box-shadow: 0 6px 18px rgba(255,244,79,0.16);" href="#">Open to opportunities</a>
+          <a class="inline-flex items-center md:hidden justify-center bg-[#86EFAC] w-28 px-5 py-4 rounded-lg text-black text-sm font-medium card-shadow" href="#">Available</a>
+        </div>
+
+        <!-- About -->
+        <div class="mt-8 prose max-w-none">
+          <h3 class="text-2xl s font-semibold">About Me</h3>
+          <p class="text-gray-700">Hi, I’m Khairat. A data and Growth Analyst born in Abuja, Nigeria.</p>
+
+          <p class="text-gray-700 pt-6 "><strong>Here's what I actually do:</strong> I take your scattered business data and turn them into strategic clarity. Not just strategic - actual smarter decisions that grow numbers.</p>
+
+          <p class="text-gray-700 pt-6">Most analysts build dashboards. I build direction. While others stop at insights, I connect the dots between data, people and processes - translating complex metrics into actions that execute.</p>
+
+          <p class="text-gray-700 pt-6">I've built a 2.2k+ data and tech community on LinkedIn because i actually know what i'm talking about. My open-source projects prove it</p>
+
+          <p class="text-gray-700 pt-6">The result? Decisions backed by data, not guesswork. Operations that run smoother. Teams that move faster. And strategies that don’t just look good in a report - they deliver measurable impact.</p>
+
+          <p class="text-gray-700 pt-6">When I'm not working, I'm with my mum or watching YouTube and Tafseer.</p>
+
+          <p class="text-gray-700 pt-6">I don't just find insights. I find insights that works.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Decorative tilted cards -->
+    <section class="py-8 md:px-72 md:mb-0 mb-6 flex sm:flex-col">
+      <div class="relative h-36 md:h-48">
+        <div class="bg-cover bg-center absolute left-4 top-6 w-28 h-32 tilt rounded transform origin-center"> <img src="img/IMG_20251112_124759_137.jpg" alt="" class="rounded-lg">My workspace</div>
+        <div class="absolute left-36 top-0 w-28 h-32 tilt-2 rounded transform origin-center"> <img src="img/quran🤍 (1).jpg" alt="" class="rounded-lg">Love Reading</div>
+        <div class="absolute left-72 top-12 w-28 h-32 hidden md:block tilt-3 rounded transform origin-center"> <img src="img/Storytelling With Data Book By Wiley _ Color_ Blue_White _ Size_ Os.jpg" alt="" class="rounded-lg">..and learning.</div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-6">
+      <div class="max-w-md mx-auto text-center">
+        <h3 class="text-2xl font-bold">Grab my free Notion template!</h3>
+        <p class="mt-2 text-gray-600">The same one I personally use for breaking down ambiguous problems, planning, documentation and presenting insights professionally. No fluff, just results.</p>
+
+        <div class="mt-6 grid  grid-cols-1 gap-4">
+          <input aria-label="Email" type="email" placeholder="Enter your Email Address" class="px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-300" />
+          <button class="px-6 py-3 rounded-lg bg-black text-white">Let's go!</button>
+        </div>
+         <p class="mt-2 text-gray-600 text-sm">No signups. No forms. Just Instant access</p>
+
+      </div>
+    </section>
+
+    <!-- Work experience -->
+    <section class="py-8 md:px-52">
+      <h3 class="md:text-3xl text-2xl font-bold mb-12 md:mb-6">Work Experience [click the links for case studies!]</h3>
+
+      <ul class="space-y-10">
+        <!-- example timeline item -->
+
+        
+        <li class="flex flex-col sm:flex-row  sm:items-center sm:justify-between gap-3">
+          <div class="text-sm text-gray-600">July 2024 - Present</div>
+          <div class="flex items-center gap-3">
+            <div class="text-sm">Data & Tech Advocate</div>
+           <a href="https://www.linkedIn.com/in/khairat-jimoh">
+            <div class="px-5 py-3.5 w-30 border border-[#967adc] rounded-lg flex gap-4 items-center text-xs font-semibold" style="background:#c5b5f5;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin-icon lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</div>
+            </a>
+          </div>
+        </li>
+
+        <li class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div class="text-sm text-gray-600">April 2025 - Present</div>
+          <div class="flex items-center gap-3">
+            <div class="text-sm">Data & Growth Analyst</div>
+            <a href="Plexus.html">
+            <div class="px-5 py-3.5 w-30 border border-[#f6bb42] rounded-lg flex gap-4 items-center text-xs font-semibold" style="background:#fadc97;" > <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg>Plexus</div>
+            </a>
+          </div>
+        </li>
+
+        <li class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div class="text-sm text-gray-600">March 2024 - April 2025t</div>
+          <div class="flex items-center gap-3">
+            <div class="text-sm">Data Analsyt (Strategy)</div>
+            <a href="HHK.html" class="hover">
+            <div class="px-5 py-3.5 w-30 border border-[#8cc152] rounded-lg flex gap-4 items-center text-xs font-semibold" style="background:#d8f7b7;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg>HHK
+            </div>
+            </a>
+          </div>
+        </li>
+
+        <li class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div class="text-sm text-gray-600">Feb 2023 - Jan 2024</div>
+          <div class="flex items-center gap-3">
+            <div class="text-sm">Data Analyst</div>
+            <a href="Balad.html">
+            <div class="px-5 py-3.5 w-30 border border-[#967bdc] rounded-lg flex gap-4 items-center text-xs font-semibold" style="background:#e1d7fa;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg>Balad</div>
+            </a>
+          </div>
+        </li>
+
+        <li class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div class="text-sm text-gray-600">Sept 2025 - Nov 2025</div>
+          <div class="flex items-center gap-3">
+            <div class="text-sm">Tech & Data Skills Instructor</div>
+           <a href="KSA.html">
+            <div class="px-5 py-3.5 w-30 border border-[#434a5a] rounded-lg flex gap-4 items-center text-xs font-semibold" style="background:#e6e9ed;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg>KSA</div>
+            </a>
+          </div>
+        </li>
+
+        
+      </ul>
+    </section>
+
+    <!-- Projects / Cards -->
+    <section class="py-6 md:my-16 md:px-72">
+      <h3 class="text-3xl justify-center font-bold mb-12">Here's what I've been up to!</h3>
+
+      <div class="grid gap-6">
+        <!-- card 1 -->
+        <article class="bg-white rounded-lg border border-gray-100 p-5 card-shadow">
+       <div class="bg[#F1FFC9] h-40 rounded-lg text-center flex items-center justify-center overflow-hidden">
+              <img src="img\P-ANALYTICS.png" alt="" class="object-cover object-center sm:">
+          </div>
+          <h4 class="mt-4 font-bold text-lg">Portfolio Analytics SaaS for freelancers</h4>
+          <p class="mt-3 md:text-sm text-sm text-gray-700">A lightweight SaaS product that helps web design / front-end agencies (or freelancers) analyse their projects, client workloads, resource allocation, profitability margins and project risks.</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="px-3 py-1 text-xs rounded border">Python</span>
+            <span class="px-3 py-1 text-xs rounded border">SQL</span>
+            <span class="px-3 py-1 text-xs rounded border">ML/Analytics</span>
+            <span class="px-3 py-1 text-xs rounded border">Auth</span>
+          </div>
+        </article>
+
+        <!-- card 2 -->
+        <article class="bg-white rounded-lg border border-gray-100 p-5 card-shadow">
+         <div class="bg-gray-900 h-40 rounded-lg text-center flex items-center justify-center overflow-hidden">
+              <img src="img\Github.jpg" alt="" class="object-cover object-center sm:">
+          </div>
+          <h4 class="mt-4 font-bold text-lg">Open-source Projects</h4>
+          <p class="mt-3 md:text-sm text-sm text-gray-700">I've been learning how to actively contribute to open-source data projects to strengthen my expeertise in analytics and real world solutions.</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="px-3 py-1 text-xs rounded border">Git</span>
+            <span class="px-3 py-1 text-xs rounded border">Python</span>
+            <span class="px-3 py-1 text-xs rounded border">SQL</span>
+            <span class="px-3 py-1 text-xs rounded border">Tailwind</span>
+          </div>
+        </article>
+
+        <!-- card 3 -->
+        <article class="bg-white rounded-lg border border-gray-100 p-5 card-shadow">
+           <div class="bg-gray-900 h-40 rounded-lg text-center flex items-center justify-center overflow-hidden">
+              <img src="img\n8n.jpg" alt="" class="object-cover object-center sm:">
+          </div>
+          <h4 class="mt-4 font-bold text-lg">Automation</h4>
+          <p class="mt-3 md:text-sm text-sm text-gray-700">Building lightweight workflow automations using AI- powered decision steps and n8n to streamline routine tasks, reduce manual efforts and speed up execution.</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="px-3 py-1 text-xs rounded border">n8n</span>
+            <span class="px-3 py-1 text-xs rounded border">Notion</span>
+            <span class="px-3 py-1 text-xs rounded border">Hubspot CRM</span>
+            <span class="px-3 py-1 text-xs rounded border">AI models</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="py-8 md:px-60">
+      <h3 class="text-3xl font-bold mb-4">Get in Touch</h3>
+      <p class="text-gray-700 mb-6">Working on something that needs to convert? Need a Growth Analyst who actually dig into data and give insights that make revenue? I’m down to work on projects that solve real problems. Hit me up if you’re serious about results.</p>
+
+      <div class="flex flex-col sm:flex-row gap-4 items-start">
+       <a href="mailto:khairahjimoh@gmail.com" >
+         <button class="px-6 py-3 rounded-full bg-black text-white">Send Message</button>
+       </a>
+       <a href="https://calendly.com/khairahjimoh/new-meeting">
+        <button class="px-6 py-3 rounded-full border">Book a call</button>
+       </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 text-center text-gray-500 text-sm">
+      <div>Copyright © 2020 Khairat Jimoh</div>
+      <div class="mt-2">All rights reserved</div>
+    </footer>
+
+  </div>
+
+  <!-- Minimal JS for mobile menu toggle -->
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileBar = document.getElementById('mobileBar');
+    menuBtn && menuBtn.addEventListener('click', () => {
+      mobileBar.classList.toggle('hidden');
+    });
+  </script>
+</body>
+<script src="js/script.js"></script>
+</html>
